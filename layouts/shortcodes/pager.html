@@ -1,0 +1,12 @@
+<div class="pager">
+  {{ if .Get "prevTitle" }}
+  <div class="prev">
+    <a href="{{ .Site.BaseURL }}/docs{{ .Get "prevHref" }}/">{{ .Get "prevTitle" }}</a>
+  </div>
+  {{ end }}
+  {{ if .Get "nextTitle" }}
+  <div class="next">
+    <a href="{{ .Site.BaseURL }}/docs{{ .Get "nextHref" }}/">{{ .Get "nextTitle"}}</a>
+  </div>
+  {{ end }}
+</div>
