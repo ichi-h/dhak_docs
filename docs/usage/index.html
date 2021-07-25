@@ -1,0 +1,255 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<title>Usage - Dhak</title>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=icon href=https://ippee.github.io/dhak_docs/favicon.ico>
+<link rel=stylesheet href=/dhak_docs/css/style.min.2dfe84f3bff202f9102fad2348fdc585ab14f52f14cfd34d49c9c69d7716b697.css>
+</head>
+<body class="page page-default-single">
+<div id=main-menu-mobile class=main-menu-mobile>
+<ul>
+<li class=menu-item-home>
+<a href=/dhak_docs/>
+<span>Home</span>
+</a>
+</li>
+<li class=menu-item-docs>
+<a href=/dhak_docs/docs/>
+<span>Docs</span>
+</a>
+</li>
+<li class=menu-item-github>
+<a href=https://github.com/ippee/dhak target=_blank rel="noopener noreferrer">
+<span>GitHub</span>
+</a>
+</li>
+</ul>
+</div>
+<div class=wrapper>
+<div class=header>
+<div class=container>
+<div id=main-menu class=main-menu>
+<ul>
+<li class=menu-item-home>
+<a href=/dhak_docs/>
+<span>Home</span>
+</a>
+</li>
+<li class=menu-item-docs>
+<a href=/dhak_docs/docs/>
+<span>Docs</span>
+</a>
+</li>
+<li class=menu-item-github>
+<a href=https://github.com/ippee/dhak target=_blank rel="noopener noreferrer">
+<span>GitHub</span>
+</a>
+</li>
+</ul>
+</div>
+<button id=toggle-main-menu-mobile class="hamburger hamburger--slider" type=button>
+<span class=hamburger-box>
+<span class=hamburger-inner></span>
+</span>
+</button>
+</div>
+</div>
+<div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+<div class=row>
+<div class="col-12 col-md-3 mb-3">
+<div class=sidebar>
+<div class=docs-menu>
+<h4>Docs</h4>
+<ul>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/>Overview</a>
+</li>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/installation/>Installation</a>
+</li>
+<li class=active>
+<a href=https://ippee.github.io/dhak_docs/docs/usage/>Usage</a>
+</li>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/configure/>Configuration</a>
+</li>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/security/>Security</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-9">
+<h1 class=title>Usage</h1>
+<div class="content anchor-link-enabled">
+<ul>
+<li><a href=#example>Example</a>
+<ul>
+<li><a href=#0-prepare-your-passphrase>0: Prepare your passphrase</a></li>
+<li><a href=#1-basic-usage>1: Basic usage</a></li>
+<li><a href=#2-use-options>2: Use options</a></li>
+<li><a href=#3-use-preset>3: Use preset</a></li>
+<li><a href=#4-dangerous-password-generation-deprecated>4: Dangerous password generation (deprecated)</a></li>
+</ul>
+</li>
+<li><a href=#syntax-of-dhak>Syntax of Dhak</a>
+<ul>
+<li><a href=#commands>Commands</a></li>
+<li><a href=#title>Title</a></li>
+<li><a href=#preset>Preset</a></li>
+<li><a href=#options>Options</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id=example>Example</h2>
+<h3 id=0-prepare-your-passphrase>0: Prepare your passphrase</h3>
+<p>Dhak requires your passphrase when you get a password. This is like a master key in a typical password manager.</p>
+<p>A passphrase must be 12 character or more, and contain one lower-case, upper-case and number at least.<br>
+If you forget it, you will never be able to get the same password again, so try to use what is hard to forget and hard to guess.</p>
+<p>I recommend you to use some passphrase generators, like <a href=https://untroubled.org/pwgen/ppgen.cgi>Secure Passphrase Generator</a>.</p>
+<p>Here, I will use the passphrase &ldquo;Norm&rsquo;s72Swished50Sideshow&rdquo; as an example.</p>
+<h3 id=1-basic-usage>1: Basic usage</h3>
+<p>Dhak generates passwords from your original passphrase and the name of the service.<br>
+The following command is the basic usage of Dhak.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>dhak Github
+Passphrase: <span class=c1># (Enter &#34;Norm&#39;s72Swished50Sideshow&#34;)</span>
+Password was copied to clipboard!
+</code></pre></div><p>Then, the value of the clipboard is &ldquo;<strong>(OZshheENa\‘y+g!1p2W</strong>&rdquo;.</p>
+<p>The default settings of the password generation are:</p>
+<ul>
+<li>Password length: 20</li>
+<li>Symbols: !"#$%&‘()*+,-./:;&lt;=>?@[\]^_`{|}~</li>
+<li>Algorithm: 2b</li>
+<li>Cost: 10</li>
+</ul>
+<p>For the details of the above, see <a href=#options>Options</a>.</p>
+<h3 id=2-use-options>2: Use options</h3>
+<p>You can specify the generation settings in detail by using options.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>dhak Github --len<span class=o>=</span><span class=m>40</span> --sym<span class=o>=</span><span class=s1>&#39;&#39;</span> --cost<span class=o>=</span><span class=m>15</span>
+Passphrase: <span class=c1># (Enter &#34;Norm&#39;s72Swished50Sideshow&#34;)</span>
+WARNING: The password does not contain any symbols.
+Password was copied to clipboard!
+</code></pre></div><p>And the result is &ldquo;<strong>CZUFWjezYP4q61039tlOYewgazshrhRKCvM2NiL2</strong>&rdquo;. It&rsquo;s so different from before!</p>
+<h3 id=3-use-preset>3: Use preset</h3>
+<p>Typing that stuff like the above every time makes you very bothered, so you can add a preset to ~/.dhakrc file, like:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>{
+  &#34;presets&#34;: {
+    &#34;new_preset&#34;: {
+      &#34;password_length&#34;: &#34;40&#34;,
+      &#34;symbols&#34;: &#34;&#34;,
+      &#34;cost&#34;: &#34;15&#34;
+    }
+  }
+}
+</code></pre></div><p>And run the following command.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>dhak Github new_preset
+Passphrase: <span class=c1># (Enter &#34;Norm&#39;s72Swished50Sideshow&#34;)</span>
+WARNING: The password does not contain any symbols.
+Password was copied to clipboard!
+</code></pre></div><p>Then, you can get the same password &ldquo;<strong>CZUFWjezYP4q61039tlOYewgazshrhRKCvM2NiL2</strong>&rdquo; as before.</p>
+<p>For details, see <a href=/docs/configure>Configuration</a> section.</p>
+<h3 id=4-dangerous-password-generation-deprecated>4: Dangerous password generation (deprecated)</h3>
+<p>If you add the &ldquo;-f&rdquo; or &ldquo;&ndash;force&rdquo; option, you can force Dhak to generate an insecure password.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>dhak Github --len<span class=o>=</span><span class=m>6</span> --sym<span class=o>=</span><span class=s1>&#39;&#39;</span> --force
+Passphrase: <span class=c1># (Enter &#34;Norm&#39;s72Swished50Sideshow&#34;)</span>
+WARNING: The password length <span class=s2>&#34;6&#34;</span> is short. It should be <span class=m>12</span> or more.
+Password was copied to clipboard!
+</code></pre></div><p>The password is &ldquo;<strong>qOZsMh</strong>&rdquo;. Hmm&mldr;</p>
+<p>You may use this option, for example, when you sign up a service which accepts only very short passwords.<br>
+Conversely, <strong>do not use use it unless you have those reasons.</strong></p>
+<h2 id=syntax-of-dhak>Syntax of Dhak</h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>dhak [-h, --help] [-v, --version] &lt;title&gt; (&lt;preset&gt;) [options]
+</code></pre></div><h3 id=commands>Commands</h3>
+<ul>
+<li>-h, --help
+<ul>
+<li>Display the help.</li>
+</ul>
+</li>
+<li>-v, --version
+<ul>
+<li>Display the version.</li>
+</ul>
+</li>
+</ul>
+<h3 id=title>Title</h3>
+<p>The name of the service.</p>
+<h3 id=preset>Preset</h3>
+<p>The pre-prepared setting for password generation (you can add a preset in ~/.dhakrc).</p>
+<h3 id=options>Options</h3>
+<p>Specify additional functions as needed.</p>
+<p>Dhak will use settings of options in preference to settings of presets.<br>
+The following values of the options mean the default values in this app. If you omit a option, Dhak will use them.</p>
+<ul>
+<li>-d, --display
+<ul>
+<li>Display the password in the terminal.</li>
+</ul>
+</li>
+<li>-f, --force (deprecated)
+<ul>
+<li>Forcibly generate a password which may be insecure, such as a password whose length is less than 12 or which has only lower-case.</li>
+<li><u><b>YOU SHOULD USE THIS OPTION AS LITTLE AS POSSIBLE.</b></u></li>
+</ul>
+</li>
+<li>--len=20
+<ul>
+<li>Set a password length.</li>
+<li>If it is less than 12, you cannot generate the password basically.</li>
+</ul>
+</li>
+<li>--sym=!"#$%&‘()*+,-./:;&lt;=>?@[\]^_`{|}~
+<ul>
+<li>Set symbols used the password generation.</li>
+<li>You can use any symbols except lower-case, upper-case and numbers.</li>
+<li>You will get passwords without symbols if you keep this empty like <code>--sym=''</code>.</li>
+</ul>
+</li>
+<li>--algo=2b
+<ul>
+<li>Set an algorithm of BCrypt.</li>
+<li>You can use &ldquo;2&rdquo;, &ldquo;2a&rdquo;, &ldquo;2y&rdquo; and &ldquo;2b &ldquo;, but <u>you do not have to change it unless something unexpected happens.</u></li>
+</ul>
+</li>
+<li>--cost=10
+<ul>
+<li>Set a cost of BCrypt. It must be between 4 and 31.</li>
+<li>The cost is an exponent, and the actual round of stretching is 2^n.</li>
+<li>The higher the cost, the more secure the password will be generated, but also the higher the computational load.</li>
+</ul>
+</li>
+</ul>
+<div class=pager>
+<div class=prev>
+<a href=https://ippee.github.io/dhak_docs/docs/installation/>Installation</a>
+</div>
+<div class=next>
+<a href=https://ippee.github.io/dhak_docs/docs/configure/>Configuration</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=sub-footer>
+<div class=container>
+<div class=row>
+<div class=col-12>
+<div class=sub-footer-inner>
+<ul>
+<li class=zerostatic>Copyright &copy; 2021 Ippee</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type=text/javascript src=/dhak_docs/js/scripts.min.eaf147370baecdd07c022597db631f99cab1c9cd6479de586f30327a568d6a0f.js></script>
+</body>
+</html>

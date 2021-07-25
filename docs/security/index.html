@@ -1,0 +1,195 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<title>Security - Dhak</title>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=icon href=https://ippee.github.io/dhak_docs/favicon.ico>
+<link rel=stylesheet href=/dhak_docs/css/style.min.2dfe84f3bff202f9102fad2348fdc585ab14f52f14cfd34d49c9c69d7716b697.css>
+</head>
+<body class="page page-default-single">
+<div id=main-menu-mobile class=main-menu-mobile>
+<ul>
+<li class=menu-item-home>
+<a href=/dhak_docs/>
+<span>Home</span>
+</a>
+</li>
+<li class=menu-item-docs>
+<a href=/dhak_docs/docs/>
+<span>Docs</span>
+</a>
+</li>
+<li class=menu-item-github>
+<a href=https://github.com/ippee/dhak target=_blank rel="noopener noreferrer">
+<span>GitHub</span>
+</a>
+</li>
+</ul>
+</div>
+<div class=wrapper>
+<div class=header>
+<div class=container>
+<div id=main-menu class=main-menu>
+<ul>
+<li class=menu-item-home>
+<a href=/dhak_docs/>
+<span>Home</span>
+</a>
+</li>
+<li class=menu-item-docs>
+<a href=/dhak_docs/docs/>
+<span>Docs</span>
+</a>
+</li>
+<li class=menu-item-github>
+<a href=https://github.com/ippee/dhak target=_blank rel="noopener noreferrer">
+<span>GitHub</span>
+</a>
+</li>
+</ul>
+</div>
+<button id=toggle-main-menu-mobile class="hamburger hamburger--slider" type=button>
+<span class=hamburger-box>
+<span class=hamburger-inner></span>
+</span>
+</button>
+</div>
+</div>
+<div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+<div class=row>
+<div class="col-12 col-md-3 mb-3">
+<div class=sidebar>
+<div class=docs-menu>
+<h4>Docs</h4>
+<ul>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/>Overview</a>
+</li>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/installation/>Installation</a>
+</li>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/usage/>Usage</a>
+</li>
+<li>
+<a href=https://ippee.github.io/dhak_docs/docs/configure/>Configuration</a>
+</li>
+<li class=active>
+<a href=https://ippee.github.io/dhak_docs/docs/security/>Security</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-9">
+<h1 class=title>Security</h1>
+<div class="content anchor-link-enabled">
+<ul>
+<li><a href=#policy-of-dhak>Policy of Dhak</a></li>
+<li><a href=#password-generation-works>Password generation works</a></li>
+<li><a href=#good-points>Good points</a></li>
+<li><a href=#bad-points>Bad points</a></li>
+<li><a href=#summary>Summary</a></li>
+</ul>
+<hr>
+<h2 id=policy-of-dhak>Policy of Dhak</h2>
+<p>I created Dhak under the policy <strong>not to keep confidential information</strong>.</p>
+<p>I said that Dhak is a password manager, but its essence is a <em>function</em>. This means that if you input the same value, the output will always be the same.<br>
+By doing this, Dhak practically manages passwords by not keeping any confidential information.</p>
+<h2 id=password-generation-works>Password generation works</h2>
+<p>Basically, Dhak generates passwords using <strong>BCrypt</strong>. BCrypt is a kind of hash algorithm and calculates the hash from the target and salt (a random string which is added at hashing).</p>
+<p>Because of the way Bcrypt works, the target must be 72 bytes or less. So first, Dhak generates the binary hash with SHA-512 from the received passphrase and title.</p>
+<p><img src=/images/works_1.jpg alt="make binary hash"></p>
+<p>The size of SHA-512 hash is 128 bytes as a hex string, but as a binary, it becomes 64 bytes.</p>
+<p>Next, Dhak takes the integer hash code from the obtained binary hash and makes a salt from it. Then, Dhak generates the string hash from the two values by using BCrypt <a href=#1>[1]</a>.</p>
+<p><img src=/images/works_2.jpg alt="make string hash"></p>
+<p>Finally, Dhak cuts the hash to a specified length and randomly replaces a character to a symbol <a href=#2>[2]</a>.<br>
+Thus, the password is completed <a href=#3>[3]</a>.</p>
+<p><img src=/images/works_3.jpg alt="make password"></p>
+<h2 id=good-points>Good points</h2>
+<p>The biggest benefit of managing passwords functionally is that <strong>there is no possibility to leak information</strong>.<br>
+What Dhak does just calculates a password from getting values, so it does not need password retention or passphrase verification. Since Dhak does not keep confidential information, there is no leakage of information essentially.</p>
+<p>Also, the side effect of being a function is that <strong>you do not need to sync multiple devices.</strong>.<br>
+In these days, it is common to have multiple digital devices, such as a computer, a smartphone, and so on. The problem under these situation is how to manage passwords between them. As a solution for it, for example, some are to save passwords by using a cloud service and to sync them, but others are to share them by using an USB flash memory manually.</p>
+<p>Dhak does not keep confidential information, so it cannot take the above. However, Dhak can share passwords across multiple devices without doing anything special like that. From the beginning, Dhak has the system to return the same password from the same passphrase and title on any device. This is possible because Dhak is a function.</p>
+<h2 id=bad-points>Bad points</h2>
+<p>Of course, Dhak has some bad points.</p>
+<p>The first is that <strong>Dhak is slightly inflexible.</strong><br>
+For example, you cannot manage your current passwords with Dhak because it is a password calculator. If you switch to Dhak, you will need to update your existing passwords with Dhak&rsquo;s ones.<br>
+Also, it is difficult to change a password once Dhak has generated it. If you want to change your password for some reason, you will need to change the input value, such as adding the version to the title.</p>
+<p>And the second, this is the biggest drawback, is that <strong>if the hash value used for the password is cracked, other passwords can be exposed in chains.</strong><br>
+Hashing is a one-way function, but it is possible to identify the value of the input source using techniques such as rainbow table attacks. Once the passphrase is known by these methods, other passwords can be easily cracked.<br>
+To counter this, Dhak uses BCrypt to generate passwords, which a strong hashing algorithm that is used in a great many situations.</p>
+<h2 id=summary>Summary</h2>
+<p>The critical differences between Dhak and a typical password manager are as follows:</p>
+<ul>
+<li>Typical password manager
+<ul>
+<li>Pros:
+<ul>
+<li>High flexibility.</li>
+</ul>
+</li>
+<li>Cons:
+<ul>
+<li>Risk of information leakage.</li>
+<li>In some cases, synchronization between devices is troublesome.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dhak
+<ul>
+<li>Pros:
+<ul>
+<li>Resistant to information leakage.</li>
+<li>No need to sync multiple devices.</li>
+</ul>
+</li>
+<li>Cons:
+<ul>
+<li>Possibility of a single password exposing other passwords.</li>
+<li>Low flexibility.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><a name=1></a>
+[1] Since the hash will yield an irregular string, there is a slight possibility that BCRypt will generate an insecure password (e.g. only numbers, only letters, etc.). In that case, add a random integer value to the target, hash it, and repeat the process until a secure password is generated.</p>
+<p><a name=2></a>
+[2] If symbols are used, the number of symbols in the password is randomly adjusted from 1 to one-third of the password length. This &ldquo;one-third&rdquo; comes from the ratio of the 32 symbols out of the 94 characters that can be entered on a typical keyboard.</p>
+<p><a name=3></a>
+[3] For the convenience of getting the true hash, it is processed in reverse order.</p>
+<div class=pager>
+<div class=prev>
+<a href=https://ippee.github.io/dhak_docs/docs/configure/>Configuration</a>
+</div>
+<div class=next>
+<a href=https://ippee.github.io/dhak_docs/docs/installation/>Installation</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=sub-footer>
+<div class=container>
+<div class=row>
+<div class=col-12>
+<div class=sub-footer-inner>
+<ul>
+<li class=zerostatic>Copyright &copy; 2021 Ippee</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type=text/javascript src=/dhak_docs/js/scripts.min.eaf147370baecdd07c022597db631f99cab1c9cd6479de586f30327a568d6a0f.js></script>
+</body>
+</html>
