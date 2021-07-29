@@ -26,18 +26,18 @@ Basically, Dhak generates passwords using **BCrypt**. BCrypt is a kind of hash a
 
 Because of the way Bcrypt works, the target must be 72 bytes or less. So first, Dhak generates the binary hash with SHA-512 from the received passphrase and title.
 
-![make binary hash](/images/works_1.jpg)
+![make binary hash](/dhak_docs/images/works_1.jpg)
 
 The size of SHA-512 hash is 128 bytes as a hex string, but as a binary, it becomes 64 bytes.
 
 Next, Dhak takes the integer hash code from the obtained binary hash and makes a salt from it. Then, Dhak generates the string hash from the two values by using BCrypt [[1]](#1).
 
-![make string hash](/images/works_2.jpg)
+![make string hash](/dhak_docs/images/works_2.jpg)
 
 Finally, Dhak cuts the hash to a specified length and randomly replaces a character to a symbol [[2]](#2).  
 Thus, the password is completed [[3]](#3).
 
-![make password](/images/works_3.jpg)
+![make password](/dhak_docs/images/works_3.jpg)
 
 ## Good points
 
