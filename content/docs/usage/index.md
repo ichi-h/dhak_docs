@@ -12,7 +12,7 @@ summary: Basic usage of Dhak.
   - [3: Use preset](#3-use-preset)
   - [4: Dangerous password generation (deprecated)](#4-dangerous-password-generation-deprecated)
 - [Syntax of Dhak](#syntax-of-dhak)
-  - [Commands](#commands)
+  - [Command](#command)
   - [Title](#title)
   - [Preset](#preset)
   - [Options](#options)
@@ -118,7 +118,7 @@ Conversely, **do not use use it unless you have those reasons.**
 dhak [-h, --help] [-v, --version] <title> (<preset>) [options]
 ```
 
-### Commands
+### Command
 
 - -h, \--help
   - Display the help.

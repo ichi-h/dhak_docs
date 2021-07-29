@@ -44,10 +44,10 @@ Thus, the password is completed [[3]](#3).
 The biggest benefit of managing passwords functionally is that **there is no possibility to leak information**.  
 What Dhak does just calculates a password from getting values, so it does not need password retention or passphrase verification. Since Dhak does not keep confidential information, there is no leakage of information essentially.
 
-Also, the side effect of being a function is that **you do not need to sync multiple devices.**.  
+Also, another benefit of being a function is that **you do not need to sync multiple devices.**.  
 In these days, it is common to have multiple digital devices, such as a computer, a smartphone, and so on. The problem under these situation is how to manage passwords between them. As a solution for it, for example, some are to save passwords by using a cloud service and to sync them, but others are to share them by using an USB flash memory manually.
 
-Dhak does not keep confidential information, so it cannot take the above. However, Dhak can share passwords across multiple devices without doing anything special like that. From the beginning, Dhak has the system to return the same password from the same passphrase and title on any device. This is possible because Dhak is a function.
+Dhak itself does not keep information, so it cannot take the above. However, Dhak can share passwords across multiple devices without doing anything special like that. Dhak has the system to return the same password from the same passphrase and title on any device, so it dose not need synchronization in the first place.
 
 ## Bad points
 
