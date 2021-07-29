@@ -100,19 +100,19 @@ By doing this, Dhak practically manages passwords by not keeping any confidentia
 <h2 id=password-generation-works>Password generation works</h2>
 <p>Basically, Dhak generates passwords using <strong>BCrypt</strong>. BCrypt is a kind of hash algorithm and calculates the hash from the target and salt (a random string which is added at hashing).</p>
 <p>Because of the way Bcrypt works, the target must be 72 bytes or less. So first, Dhak generates the binary hash with SHA-512 from the received passphrase and title.</p>
-<p><img src=/images/works_1.jpg alt="make binary hash"></p>
+<p><img src=/dhak_docs/images/works_1.jpg alt="make binary hash"></p>
 <p>The size of SHA-512 hash is 128 bytes as a hex string, but as a binary, it becomes 64 bytes.</p>
 <p>Next, Dhak takes the integer hash code from the obtained binary hash and makes a salt from it. Then, Dhak generates the string hash from the two values by using BCrypt <a href=#1>[1]</a>.</p>
-<p><img src=/images/works_2.jpg alt="make string hash"></p>
+<p><img src=/dhak_docs/images/works_2.jpg alt="make string hash"></p>
 <p>Finally, Dhak cuts the hash to a specified length and randomly replaces a character to a symbol <a href=#2>[2]</a>.<br>
 Thus, the password is completed <a href=#3>[3]</a>.</p>
-<p><img src=/images/works_3.jpg alt="make password"></p>
+<p><img src=/dhak_docs/images/works_3.jpg alt="make password"></p>
 <h2 id=good-points>Good points</h2>
 <p>The biggest benefit of managing passwords functionally is that <strong>there is no possibility to leak information</strong>.<br>
 What Dhak does just calculates a password from getting values, so it does not need password retention or passphrase verification. Since Dhak does not keep confidential information, there is no leakage of information essentially.</p>
-<p>Also, the side effect of being a function is that <strong>you do not need to sync multiple devices.</strong>.<br>
+<p>Also, another benefit of being a function is that <strong>you do not need to sync multiple devices.</strong>.<br>
 In these days, it is common to have multiple digital devices, such as a computer, a smartphone, and so on. The problem under these situation is how to manage passwords between them. As a solution for it, for example, some are to save passwords by using a cloud service and to sync them, but others are to share them by using an USB flash memory manually.</p>
-<p>Dhak does not keep confidential information, so it cannot take the above. However, Dhak can share passwords across multiple devices without doing anything special like that. From the beginning, Dhak has the system to return the same password from the same passphrase and title on any device. This is possible because Dhak is a function.</p>
+<p>Dhak itself does not keep information, so it cannot take the above. However, Dhak can share passwords across multiple devices without doing anything special like that. Dhak has the system to return the same password from the same passphrase and title on any device, so it dose not need synchronization in the first place.</p>
 <h2 id=bad-points>Bad points</h2>
 <p>Of course, Dhak has some bad points.</p>
 <p>The first is that <strong>Dhak is slightly inflexible.</strong><br>
